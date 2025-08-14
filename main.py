@@ -4,6 +4,7 @@ import raylibpy as rl
 
 def format_display_name(filename):
     name = os.path.splitext(filename)[0]  # remove .ogg
+    name = name.replace("ribbit_", "")
     name = name.replace("_", " ")  # underscores → spaces
     return name.title()  # capitalize words
 

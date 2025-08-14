@@ -2,7 +2,7 @@ local rl = rl or require"raylib" ---@diagnostic disable-line
 local ffi = require"ffi"
 
 local function display_name(filename)
-	local name = filename:gsub("%.ogg$", ""):gsub("_", " ")
+	local name = filename:gsub("%.ogg$", ""):gsub("ribbit_", ""):gsub("_", " ")
 	return name:gsub("(%w)(%w*)", function(f, r) return f:upper()..r:lower() end)
 end
 
@@ -13,19 +13,20 @@ local function main()
 	rl.SetTargetFPS(15)
 	rl.InitAudioDevice()
 
+	local files = {}
 	-- for f in io.popen"ls assets/*.ogg":lines() do table.insert(files, f) end
 	-- for f in io.popen"dir /b assets\\*.ogg":lines() do table.insert(files, f) end
-	-- if #files == 0 then
-	-- 	print"No .ogg files found in current directory."
-	-- 	rl.CloseAudioDevice()
-	-- 	rl.CloseWindow()
-	-- 	return
-	-- end
-	local files = rl.LoadDirectoryFiles"Ribbit/assets"
-	for i = 0, files.count - 1 do
-		print(ffi.string(files.paths[i]):match"[^/]%.ogg$")
+	local pathlist = rl.LoadDirectoryFiles"assets"
+	for i = 0, pathlist.count - 1 do
+		local path = ffi.string(pathlist.paths[i]):match"[^/]+%.ogg$"
+		if path then table.insert(files, path) end
 	end
-	local files = {"bass.ogg", "bongo.ogg", "flute.ogg", "guitar.ogg", "maraca.ogg"}
+	if #files == 0 then
+		print"No .ogg files found in current directory."
+		rl.CloseAudioDevice()
+		rl.CloseWindow()
+		return
+	end
 
 	local names = {}
 	for i, path in ipairs(files) do names[i] = display_name(path) end
