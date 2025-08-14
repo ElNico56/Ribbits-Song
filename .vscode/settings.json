@@ -1,0 +1,5 @@
+{
+    "explorer.fileNesting.patterns": {
+        "main.go": "go.mod, go.sum"
+    }
+}
