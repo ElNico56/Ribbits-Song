@@ -21,7 +21,7 @@ type Instrument struct {
 func main() {
 	rl.SetTraceLogLevel(rl.LogFatal)
 	rl.SetConfigFlags(rl.FlagWindowResizable)
-	rl.InitWindow(1080, 720, "")
+	rl.InitWindow(640, 480, "")
 	defer rl.CloseWindow()
 	rl.SetTargetFPS(15)
 	rl.InitAudioDevice()

@@ -12,7 +12,7 @@ def format_display_name(filename):
 def main():
     rl.set_trace_log_level(rl.LOG_ERROR)
     rl.set_config_flags(rl.FLAG_WINDOW_RESIZABLE)
-    rl.init_window(1080, 720, "")
+    rl.init_window(640, 480, "")
     rl.set_target_fps(15)
     rl.init_audio_device()
 

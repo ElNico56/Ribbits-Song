@@ -9,7 +9,7 @@ end
 local function main()
 	rl.SetTraceLogLevel(rl.LOG_FATAL)
 	rl.SetConfigFlags(rl.FLAG_WINDOW_RESIZABLE)
-	rl.InitWindow(1080, 720, "")
+	rl.InitWindow(640, 480, "")
 	rl.SetTargetFPS(15)
 	rl.InitAudioDevice()
 
